@@ -338,21 +338,21 @@ namespace
 
         static const caller_t callersL1[] =
         {
-            matchL1_gpu<unsigned char>, 0/*matchL1_gpu<signed char>*/,
+            matchL1_gpu<unsigned char>, matchL1_gpu<signed char>,
             matchL1_gpu<unsigned short>, matchL1_gpu<short>,
             matchL1_gpu<int>, matchL1_gpu<float>
         };
         static const caller_t callersL2[] =
         {
-            0/*matchL2_gpu<unsigned char>*/, 0/*matchL2_gpu<signed char>*/,
-            0/*matchL2_gpu<unsigned short>*/, 0/*matchL2_gpu<short>*/,
-            0/*matchL2_gpu<int>*/, matchL2_gpu<float>
+            matchL2_gpu<unsigned char>, matchL2_gpu<signed char>,
+            matchL2_gpu<unsigned short>, matchL2_gpu<short>,
+            matchL2_gpu<int>, matchL2_gpu<float>
         };
         static const caller_t callersHamming[] =
         {
-            matchHamming_gpu<unsigned char>, 0/*matchHamming_gpu<signed char>*/,
-            matchHamming_gpu<unsigned short>, 0/*matchHamming_gpu<short>*/,
-            matchHamming_gpu<int>, 0/*matchHamming_gpu<float>*/
+            matchHamming_gpu<unsigned char>, matchHamming_gpu<signed char>,
+            matchHamming_gpu<unsigned short>, matchHamming_gpu<short>,
+            matchHamming_gpu<int>, matchHamming_gpu<float>
         };
 
         const caller_t* callers = norm_ == NORM_L1 ? callersL1 : norm_ == NORM_L2 ? callersL2 : callersHamming;
@@ -400,21 +400,21 @@ namespace
 
         static const caller_t callersL1[] =
         {
-            matchL1_gpu<unsigned char>, 0/*matchL1_gpu<signed char>*/,
+            matchL1_gpu<unsigned char>, matchL1_gpu<signed char>,
             matchL1_gpu<unsigned short>, matchL1_gpu<short>,
             matchL1_gpu<int>, matchL1_gpu<float>
         };
         static const caller_t callersL2[] =
         {
-            0/*matchL2_gpu<unsigned char>*/, 0/*matchL2_gpu<signed char>*/,
-            0/*matchL2_gpu<unsigned short>*/, 0/*matchL2_gpu<short>*/,
-            0/*matchL2_gpu<int>*/, matchL2_gpu<float>
+            matchL2_gpu<unsigned char>, matchL2_gpu<signed char>,
+            matchL2_gpu<unsigned short>, matchL2_gpu<short>,
+            matchL2_gpu<int>, matchL2_gpu<float>
         };
         static const caller_t callersHamming[] =
         {
-            matchHamming_gpu<unsigned char>, 0/*matchHamming_gpu<signed char>*/,
-            matchHamming_gpu<unsigned short>, 0/*matchHamming_gpu<short>*/,
-            matchHamming_gpu<int>, 0/*matchHamming_gpu<float>*/
+            matchHamming_gpu<unsigned char>, matchHamming_gpu<signed char>,
+            matchHamming_gpu<unsigned short>, matchHamming_gpu<short>,
+            matchHamming_gpu<int>, matchHamming_gpu<float>
         };
 
         const caller_t* callers = norm_ == NORM_L1 ? callersL1 : norm_ == NORM_L2 ? callersL2 : callersHamming;
@@ -598,21 +598,21 @@ namespace
 
         static const caller_t callersL1[] =
         {
-            matchL1_gpu<unsigned char>, 0/*matchL1_gpu<signed char>*/,
+            matchL1_gpu<unsigned char>, matchL1_gpu<signed char>,
             matchL1_gpu<unsigned short>, matchL1_gpu<short>,
             matchL1_gpu<int>, matchL1_gpu<float>
         };
         static const caller_t callersL2[] =
         {
-            0/*matchL2_gpu<unsigned char>*/, 0/*matchL2_gpu<signed char>*/,
-            0/*matchL2_gpu<unsigned short>*/, 0/*matchL2_gpu<short>*/,
-            0/*matchL2_gpu<int>*/, matchL2_gpu<float>
+            matchL2_gpu<unsigned char>, matchL2_gpu<signed char>,
+            matchL2_gpu<unsigned short>, matchL2_gpu<short>,
+            matchL2_gpu<int>, matchL2_gpu<float>
         };
         static const caller_t callersHamming[] =
         {
-            matchHamming_gpu<unsigned char>, 0/*matchHamming_gpu<signed char>*/,
-            matchHamming_gpu<unsigned short>, 0/*matchHamming_gpu<short>*/,
-            matchHamming_gpu<int>, 0/*matchHamming_gpu<float>*/
+            matchHamming_gpu<unsigned char>, matchHamming_gpu<signed char>,
+            matchHamming_gpu<unsigned short>, matchHamming_gpu<short>,
+            matchHamming_gpu<int>, matchHamming_gpu<float>
         };
 
         const caller_t* callers = norm_ == NORM_L1 ? callersL1 : norm_ == NORM_L2 ? callersL2 : callersHamming;
