@@ -5162,8 +5162,8 @@ public:
 
 MatAllocator* getOpenCLAllocator()
 {
-    static MatAllocator * allocator = new OpenCLAllocator();
-    return allocator;
+    static OpenCLAllocator allocator;// = new OpenCLAllocator();
+    return &allocator;
 }
 
 ///////////////////////////////////////////// Utility functions /////////////////////////////////////////////////
