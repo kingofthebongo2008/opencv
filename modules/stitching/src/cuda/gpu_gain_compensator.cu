@@ -52,7 +52,41 @@ namespace cv { namespace cuda { namespace device
 {
     namespace imgproc
     {
-     
+        //simplified version of std::pair
+        template <typename t1, typename t2>
+        class pair
+        {
+            public:
+
+            typedef t1 first_type;
+            typedef t2 second_type;
+            
+            __host__ __device__ pair()
+            {
+
+            }
+
+            __host__ __device__ pair(const t1& x, const t2& y) : first(x), second(y)
+            {
+
+            }
+
+            template <typename u1, typename u2>
+            __host__ __device__ pair(const pair<u1, u2> & p) : first(p.first), second(p.second)
+            {
+
+            }
+
+
+            first_type first;
+            second_type second;
+        };
+
+        template <typename t1, typename t2> __host __device__ inline pair<t1, t2> make_pair(t1 x, t2 y)
+        {
+            return ( pair<t1, t2>(x, y) );
+        }
+
     } // namespace imgproc
 }}} // namespace cv { namespace cuda { namespace cudev {
 
@@ -61,7 +95,7 @@ namespace cv { namespace cuda{
 
     void test(InputArray images)
     {
-
+        auto p = device::imgproc::make_pair(0, 0);
     }
 }}
 

@@ -67,13 +67,9 @@ public:
     @param masks Image masks to update (second value in pair specifies the value which should be used
     to detect where image is)
      */
-    void feed(const std::vector<Point> &corners, const std::vector<UMat> &images,
-              const std::vector<UMat> &masks);
-    /** @overload */
-    virtual void feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images,
-                      const std::vector<std::pair<cuda::GpuMat,uchar> > &masks) = 0;
-    /** @brief Compensate exposure in the specified image.
-
+    virtual void feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks);
+    
+    /**
     @param index Image index
     @param corner Image top-left corner
     @param image Image to process
@@ -87,8 +83,7 @@ public:
 class CV_EXPORTS NoExposureCompensatorGpu : public ExposureCompensatorGpu
 {
 public:
-    void feed(const std::vector<Point> &/*corners*/, const std::vector<cuda::GpuMat> &/*images*/,
-        const std::vector<std::pair<cuda::GpuMat, uchar> > &/*masks*/) { }
+    void feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks);
     void apply(int /*index*/, Point /*corner*/, InputOutputArray /*image*/, InputArray /*mask*/) { }
 };
 
@@ -98,8 +93,7 @@ intensities, see @cite BL07 and @cite WJ10 for details.
 class CV_EXPORTS GainCompensatorGpu : public ExposureCompensatorGpu
 {
 public:
-    void feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images,
-              const std::vector<std::pair<cuda::GpuMat,uchar> > &masks);
+    void feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks);
     void apply(int index, Point corner, InputOutputArray image, InputArray mask);
     std::vector<double> gains() const;
 
@@ -115,8 +109,7 @@ class CV_EXPORTS BlocksGainCompensatorGpu : public ExposureCompensatorGpu
 public:
     BlocksGainCompensatorGpu(int bl_width = 32, int bl_height = 32)
             : bl_width_(bl_width), bl_height_(bl_height) {}
-    void feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images,
-        const std::vector<std::pair<cuda::GpuMat, uchar> > &masks);
+    void feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks);
     void apply(int index, Point corner, InputOutputArray image, InputArray mask);
 
 private:

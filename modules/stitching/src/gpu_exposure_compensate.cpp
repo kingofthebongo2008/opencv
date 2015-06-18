@@ -67,8 +67,7 @@ namespace detail {
 }
 
 
-void ExposureCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images,
-                               const std::vector<UMat> &masks)
+void ExposureCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks)
 {
     /*
     std::vector<std::pair<UMat,uchar> > level_masks;
@@ -80,7 +79,8 @@ void ExposureCompensatorGpu::feed(const std::vector<Point> &corners, const std::
 }
 
 
-void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images, const std::vector<std::pair<cuda::GpuMat, uchar> > &masks)
+void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks)
+//void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images, const std::vector<std::pair<cuda::GpuMat, uchar> > &masks)
 {
     /*
     LOGLN("Exposure compensation...");
@@ -179,8 +179,8 @@ std::vector<double> GainCompensatorGpu::gains() const
 }
 
 
-void BlocksGainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images,
-    const std::vector<std::pair<cuda::GpuMat, uchar> > &masks)
+void BlocksGainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images, const std::vector<UMat> &masks)
+//feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images, const std::vector<std::pair<cuda::GpuMat, uchar> > &masks)
 {
     /*
     CV_Assert(corners.size() == images.size() && images.size() == masks.size());
