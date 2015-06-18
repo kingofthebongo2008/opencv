@@ -42,6 +42,15 @@
 
 #include "precomp.hpp"
 
+namespace cv
+{
+    namespace cuda
+    {
+        void test(InputArray images);
+    }
+
+}
+
 namespace cv {
 namespace detail {
 
@@ -61,17 +70,19 @@ namespace detail {
 void ExposureCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images,
                                const std::vector<UMat> &masks)
 {
+    /*
     std::vector<std::pair<UMat,uchar> > level_masks;
     for (size_t i = 0; i < masks.size(); ++i)
         level_masks.push_back(std::make_pair(masks[i], 255));
 
     feed(corners, images, level_masks);
+    */
 }
 
 
-void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images,
-                           const std::vector<std::pair<UMat,uchar> > &masks)
+void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images, const std::vector<std::pair<cuda::GpuMat, uchar> > &masks)
 {
+    /*
     LOGLN("Exposure compensation...");
 #if ENABLE_LOG
     int64 t = getTickCount();
@@ -82,6 +93,8 @@ void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vect
     const int num_images = static_cast<int>(images.size());
     Mat_<int> N(num_images, num_images); N.setTo(0);
     Mat_<double> I(num_images, num_images); I.setTo(0);
+
+    
 
     //Rect dst_roi = resultRoi(corners, images);
     Mat subimg1, subimg2;
@@ -143,6 +156,7 @@ void GainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vect
     solve(A, b, gains_);
 
     LOGLN("Exposure compensation, time: " << ((getTickCount() - t) / getTickFrequency()) << " sec");
+    */
 }
 
 
@@ -154,16 +168,21 @@ void GainCompensatorGpu::apply(int index, Point /*corner*/, InputOutputArray ima
 
 std::vector<double> GainCompensatorGpu::gains() const
 {
+
     std::vector<double> gains_vec(gains_.rows);
+    /*
     for (int i = 0; i < gains_.rows; ++i)
         gains_vec[i] = gains_(i, 0);
+    */
     return gains_vec;
+    
 }
 
 
-void BlocksGainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<UMat> &images,
-                                     const std::vector<std::pair<UMat,uchar> > &masks)
+void BlocksGainCompensatorGpu::feed(const std::vector<Point> &corners, const std::vector<cuda::GpuMat> &images,
+    const std::vector<std::pair<cuda::GpuMat, uchar> > &masks)
 {
+    /*
     CV_Assert(corners.size() == images.size() && images.size() == masks.size());
 
     const int num_images = static_cast<int>(images.size());
@@ -221,11 +240,13 @@ void BlocksGainCompensatorGpu::feed(const std::vector<Point> &corners, const std
         sepFilter2D(gain_maps_[img_idx], gain_maps_[img_idx], CV_32F, ker, ker);
         sepFilter2D(gain_maps_[img_idx], gain_maps_[img_idx], CV_32F, ker, ker);
     }
+    */
 }
 
 
 void BlocksGainCompensatorGpu::apply(int index, Point /*corner*/, InputOutputArray _image, InputArray /*mask*/)
 {
+    /*
     CV_Assert(_image.type() == CV_8UC3);
 
     UMat u_gain_map;
@@ -247,6 +268,7 @@ void BlocksGainCompensatorGpu::apply(int index, Point /*corner*/, InputOutputArr
             row[x].z = saturate_cast<uchar>(row[x].z * gain_row[x]);
         }
     }
+    */
 }
 
 } // namespace detail
